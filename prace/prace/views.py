@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from thep.serializer import StudentSerializers
+from thep.serializers import StudentSerializers
 from thep.models import Student
 
 
@@ -8,9 +8,8 @@ from thep.models import Student
 class Practice(APIView):
     def get(self, request, *args, **kwargs):
         data = {
-            'name': 'bruce wayne',
-            'age': 20,
-            'place': 'gotham',
+            'username': 'bruce wayne',
+            'city': 'gotham',
         }
         return Response(data)
     

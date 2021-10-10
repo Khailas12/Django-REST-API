@@ -4,8 +4,10 @@ from .models import Student
 
 class StudentSerializers(serializers.ModelSerializer):
     class Meta:
-        models = Student
+        model = Student
         fields = [
             'name',
-            'age'
+            'age',
+            'place',
+            'description'
         ]
