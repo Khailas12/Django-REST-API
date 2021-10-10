@@ -3,13 +3,17 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from thep.serializers import StudentSerializers
 from thep.models import Student
-
+from rest_framework.permissions import IsAuthenticated
 
 
 class Practice(APIView):
+    
+    permission_classes = (IsAuthenticated, )    # denies unauthenticated user
+    
     def get(self, request, *args, **kwargs):
         queryset = Student.objects.all()
-        serializer = StudentSerializers(queryset, many=True)    # many=True is used to serialize the queryset or list of objects instead of a single object instance    
+        student1 = queryset.first()     # this gives the restult one by one rather than all.
+        serializer = StudentSerializers(student1)   
         return Response(serializer.data)
     
     
@@ -20,3 +24,6 @@ class Practice(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors)
+    
+    
+# many=True is used to serialize the queryset or list of objects instead of a single object instance  

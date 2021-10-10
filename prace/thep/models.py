@@ -8,5 +8,6 @@ class Student(models.Model):
     description = models.TextField(blank=False)
     date_enrolled = models.DateTimeField(auto_now=True)
 
+    
     def __str__(self):
         return self.name
